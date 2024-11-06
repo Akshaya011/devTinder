@@ -2,12 +2,25 @@ const express = require('express');
 
 const app = express();
 
-app.get("/user", (req,res)=>{
+app.get("/usr", (req,res)=>{
     res.send({firstname:"Akshaya ", lastname : "kumar"})
 })
-app.post("/user",(req,res)=>{
-    res.send("data successfully saved to the database!")
-})
+app.get("/user",
+    (req,res,next)=>{
+        console.log("hi ha ha");
+        
+    // res.send("data successfully saved to the database!")
+    next();
+    }
+    ,(req,res,next)=>{
+        console.log("hello");
+        next();
+        // res.send("data successfully saved to the database2!")
+        
+    },(req,res)=>{
+        res.send("data successfully saved to the database3!")
+    }
+)
 app.post("/user",(req,res)=>{
     res.send("data successfully saved to the database!")
 })
